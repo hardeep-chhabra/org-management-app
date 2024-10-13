@@ -1,0 +1,19 @@
+
+
+services:
+
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: hardeepchhabra
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: organization_management
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    ports:
+      - "3754:3754"
+    depends_on:
+      - db
