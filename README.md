@@ -1,43 +1,43 @@
-# gpu-lab-backend-server
+# Org Management Project
 
-Main repo to manage GPU infra server
 
-Install All Dependencies
-
-## Migration & Backup
+## Step By Step DB Migrations and Running the FastAPI Project
 
 
 ## Tool Stack
 
-1. Python with Typing
+1. Python & FastAPI
 2. SQL Alchemy[ORM]
 3. Alembic[Data Migrations]
 4. Postgres[DB]
-6. Docker
-
-## Data Backup
-
-For importing data back to db
-
-```
-psql -U hardeepchhabra -h db -p 5432 -d organization_management -f ./alembic/backup/[backup_name].sql
-```
+5. Docker
+6. Docker Compose
 
 ## Data Migrations Command
 
-For Adding Migration
+Just Do
 
 ```
-alembic revision --autogenerate -m "Migration message"
 alembic upgrade head
 ```
 
-For Roll back:
+And the rest is all taken care of. This will automatically reflect changes in the postgres DB, as the migrations file are available already
 
-``alembic downgrade -1``
 
-## Database Access Command
+## Running the FastAPI Application inside the Root Project Directory
 
 ```
-psql -h db -U hardeepchhabra -d 12345;
+python3 -m venv venv
+source venv/bin/activate
+pip3 install -r requirements.txt
+uvicorn app.main:app --reload --port 3754
 ```
+
+
+## For Running Everything Inside Docker Container, Just Run
+
+```
+docker-compose up --build
+```
+
+And then access All APIs via the Documentation provided via Postman or FastAPI Docs
